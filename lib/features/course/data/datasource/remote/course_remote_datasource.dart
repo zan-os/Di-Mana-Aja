@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:di_mana_aja/features/course/data/model/chapter_model.dart';
 
 import '../../../../../registered_injection.dart';
@@ -17,8 +15,6 @@ class CourseRemoteDataSourceImpl implements CourseRemoteDataSource {
           .from('chapters')
           .select('id, title, content_focus_key!inner(focus_key)')
           .eq('course_id', chapterId);
-
-      log('Ojan $response');
 
       final courseList =
           response.map((chapters) => ChapterModel.fromMap(chapters)).toList();

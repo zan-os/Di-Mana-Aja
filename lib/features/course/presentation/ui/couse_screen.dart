@@ -41,7 +41,7 @@ class CourseScreen extends StatelessWidget {
         return ListView.separated(
           shrinkWrap: true,
           itemCount: listChapter.length,
-          separatorBuilder: (context, index) => const Divider(),
+          separatorBuilder: (context, index) => const Gap(12),
           itemBuilder: (context, index) {
             final chapter = listChapter[index];
             return Column(
@@ -89,24 +89,32 @@ class CourseScreen extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  CircleAvatar(
-                    radius: 14,
-                    backgroundColor: Colors.grey.shade700,
-                    child: Text(
-                      '${index + 1}',
-                      style: const TextStyle(fontWeight: FontWeight.w700),
+              Flexible(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    CircleAvatar(
+                      radius: 14,
+                      backgroundColor: Colors.grey.shade700,
+                      child: Text(
+                        '${index + 1}',
+                        style: const TextStyle(fontWeight: FontWeight.w700),
+                      ),
                     ),
-                  ),
-                  const Gap(10),
-                  Text(
-                    focusKey,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ],
+                    const Gap(10),
+                    Flexible(
+                      child: Text(
+                        focusKey,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                        maxLines: 2,
+                      ),
+                    ),
+                  ],
+                ),
               ),
+              const Gap(10),
               const Icon(
                 Icons.check_circle_outline_rounded,
                 color: ColorPalette.green,

@@ -1,3 +1,4 @@
+import 'package:di_mana_aja/config/constant_config.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
@@ -17,7 +18,11 @@ class SignInRemoteDataSourceImpl implements SignInRemoteDataSource {
   @override
   Future<UserCredential> signInWithGoogle() async {
     try {
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      final googelClientId = sl<ConstantConfig>().gidClientId;
+
+      final GoogleSignInAccount? googleUser = await GoogleSignIn(
+        clientId: googelClientId,
+      ).signIn();
 
       final GoogleSignInAuthentication? googleAuth =
           await googleUser?.authentication;
