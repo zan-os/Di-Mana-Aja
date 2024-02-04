@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "998538335462",
+    "project_id": "di-mana-aja-e3c38",
+    "storage_bucket": "di-mana-aja-e3c38.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998538335462:android:1f00dd5c7ba9a066cad727",
+        "android_client_info": {
+          "package_name": "com.example.di_mana_aja"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJaZdMSaVmQSIoJp85HDT5fize7lBW2Os"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
