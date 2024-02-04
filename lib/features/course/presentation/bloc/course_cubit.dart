@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:di_mana_aja/features/course/domain/usecase/get_chapters.dart';
 import 'package:di_mana_aja/features/course/presentation/bloc/course_state.dart';
 import 'package:di_mana_aja/features/course/presentation/model/course_display_model.dart';
@@ -14,7 +12,6 @@ class CourseCubit extends Cubit<CourseState> {
   final GetChapters _getChapters;
 
   void init({required int courseId}) async {
-    log('Ojan courseId $courseId');
     _setToLoadingState();
     await setCourseId(courseId: courseId);
     await getChapters();
