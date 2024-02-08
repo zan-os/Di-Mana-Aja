@@ -4,13 +4,6 @@
 
 import 'package:di_mana_aja/config/color_palette.dart';
 import 'package:di_mana_aja/config/route_config.dart';
-import 'package:di_mana_aja/features/course/presentation/bloc/course_cubit.dart';
-import 'package:di_mana_aja/features/course/presentation/ui/couse_screen.dart';
-import 'package:di_mana_aja/features/home/presentation/bloc/home_cubit.dart';
-import 'package:di_mana_aja/features/home/presentation/ui/home_screen.dart';
-import 'package:di_mana_aja/features/sign_in/presentation/bloc/sign_in_cubit.dart';
-import 'package:di_mana_aja/features/sign_in/presentation/ui/sign_in_screen.dart';
-import 'package:di_mana_aja/features/splash_screen/presentation/ui/splash_screen.dart';
 import 'package:di_mana_aja/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +13,14 @@ import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'config/constant_config.dart';
-import 'features/splash_screen/presentation/bloc/splash_cubit.dart';
+import 'presentation/course/bloc/course_cubit.dart';
+import 'presentation/course/ui/couse_screen.dart';
+import 'presentation/home/bloc/home_cubit.dart';
+import 'presentation/home/ui/home_screen.dart';
+import 'presentation/sign_in/bloc/sign_in_cubit.dart';
+import 'presentation/sign_in/ui/sign_in_screen.dart';
+import 'presentation/splash_screen/bloc/splash_cubit.dart';
+import 'presentation/splash_screen/ui/splash_screen.dart';
 import 'registered_injection.dart';
 
 /// The route configuration.
