@@ -3,7 +3,7 @@ import 'package:di_mana_aja/data/repository/home_repository_impl.dart';
 import 'package:di_mana_aja/domain/repository/home_repository.dart';
 import 'package:di_mana_aja/domain/usecase/get_course.dart';
 
-import '../registered_injection.dart';
+import 'registered_injection.dart';
 
 class HomeInjection {
   HomeInjection() {

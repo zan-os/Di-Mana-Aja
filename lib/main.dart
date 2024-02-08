@@ -3,8 +3,8 @@
 // ios       1:998538335462:ios:764e031f7124f43fcad727
 
 import 'package:di_mana_aja/config/color_palette.dart';
+import 'package:di_mana_aja/config/firebase_options.dart';
 import 'package:di_mana_aja/config/route_config.dart';
-import 'package:di_mana_aja/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,6 +13,7 @@ import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'config/constant_config.dart';
+import 'di/registered_injection.dart';
 import 'presentation/course/bloc/course_cubit.dart';
 import 'presentation/course/ui/couse_screen.dart';
 import 'presentation/home/bloc/home_cubit.dart';
@@ -21,7 +22,6 @@ import 'presentation/sign_in/bloc/sign_in_cubit.dart';
 import 'presentation/sign_in/ui/sign_in_screen.dart';
 import 'presentation/splash_screen/bloc/splash_cubit.dart';
 import 'presentation/splash_screen/ui/splash_screen.dart';
-import 'registered_injection.dart';
 
 /// The route configuration.
 final GoRouter _router = GoRouter(

@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:di_mana_aja/config/constant_config.dart';
-import 'package:di_mana_aja/registered_injection.dart';
+import 'package:di_mana_aja/di/registered_injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
