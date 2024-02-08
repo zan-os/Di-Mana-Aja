@@ -1,3 +1,5 @@
+import 'package:di_mana_aja/domain/usecase/get_course_detail.dart';
+
 import '../data/datasource/remote/course_remote_datasource.dart';
 import '../data/repository/course_repository_impl.dart';
 import '../domain/repository/course_repository.dart';
@@ -26,6 +28,9 @@ class CourseInjection {
   _registerUseCase() {
     sl.registerLazySingleton<GetChapters>(
       () => GetChapters(repository: sl()),
+    );
+    sl.registerLazySingleton<GetCourseDetail>(
+      () => GetCourseDetail(repository: sl()),
     );
   }
 }

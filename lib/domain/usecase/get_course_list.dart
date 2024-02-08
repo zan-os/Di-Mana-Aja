@@ -3,10 +3,10 @@ import 'package:di_mana_aja/domain/entities/course_entity.dart';
 
 import '../repository/home_repository.dart';
 
-class GetCourses extends BaseUseCase<List<CourseEntity>, NoParams> {
+class GetCourseList extends BaseUseCase<List<CourseEntity>, NoParams> {
   final HomeRepository _homeRepository;
 
-  GetCourses({required HomeRepository homeRepository})
+  GetCourseList({required HomeRepository homeRepository})
       : _homeRepository = homeRepository;
 
   @override

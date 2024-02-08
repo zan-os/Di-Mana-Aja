@@ -14,14 +14,14 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'config/constant_config.dart';
 import 'di/registered_injection.dart';
-import 'presentation/course/bloc/course_cubit.dart';
-import 'presentation/course/ui/couse_screen.dart';
-import 'presentation/home/bloc/home_cubit.dart';
-import 'presentation/home/ui/home_screen.dart';
-import 'presentation/sign_in/bloc/sign_in_cubit.dart';
-import 'presentation/sign_in/ui/sign_in_screen.dart';
-import 'presentation/splash_screen/bloc/splash_cubit.dart';
-import 'presentation/splash_screen/ui/splash_screen.dart';
+import 'presentation/features/course/bloc/course_cubit.dart';
+import 'presentation/features/course/ui/couse_screen.dart';
+import 'presentation/features/home/bloc/home_cubit.dart';
+import 'presentation/features/home/ui/home_screen.dart';
+import 'presentation/features/sign_in/bloc/sign_in_cubit.dart';
+import 'presentation/features/sign_in/ui/sign_in_screen.dart';
+import 'presentation/features/splash_screen/bloc/splash_cubit.dart';
+import 'presentation/features/splash_screen/ui/splash_screen.dart';
 
 /// The route configuration.
 final GoRouter _router = GoRouter(
@@ -58,8 +58,10 @@ final GoRouter _router = GoRouter(
           path: RouteConfig.course.name,
           builder: (BuildContext context, GoRouterState state) {
             return BlocProvider(
-              create: (context) => CourseCubit(getChapters: sl())
-                ..init(courseId: state.extra as int),
+              create: (context) =>
+                  CourseCubit(getChapters: sl(), getCourseDetail: sl())
+                    ..setCourseId(courseId: state.extra as int)
+                    ..init(),
               child: const CourseScreen(),
             );
           },
@@ -76,7 +78,7 @@ void main() async {
   dotenv.load(fileName: '.env');
 
   // Registering Service Locaton
-  RegisteredInjection.init();
+  await RegisteredInjection.init();
 
   // Initializing Firebase
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -110,6 +112,7 @@ class MainApp extends StatelessWidget {
           background: ColorPalette.darkBlue,
         ),
         textTheme: Theme.of(context).textTheme.apply(
+              fontFamily: 'Poppins',
               bodyColor: ColorPalette.white,
               displayColor: ColorPalette.white,
               decorationColor: ColorPalette.white,

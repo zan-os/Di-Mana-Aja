@@ -3,7 +3,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/usecase/base_usecase.dart';
-import '../../../domain/usecase/sign_in_with_google.dart';
+import '../../../../domain/usecase/sign_in_with_google.dart';
 import 'sign_in_state.dart';
 
 class SignInCubit extends Cubit<SignInState> {

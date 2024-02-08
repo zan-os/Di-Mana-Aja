@@ -1,39 +1,68 @@
+import 'package:di_mana_aja/domain/usecase/get_course_detail.dart';
+import 'package:di_mana_aja/presentation/model/course_display_model.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../domain/usecase/get_chapters.dart';
-import '../model/course_display_model.dart';
+import '../../../../domain/usecase/get_chapters.dart';
+import '../../../model/chapter_display_model.dart';
 import 'course_state.dart';
 
 class CourseCubit extends Cubit<CourseState> {
-  CourseCubit({required GetChapters getChapters})
+  CourseCubit(
+      {required GetChapters getChapters,
+      required GetCourseDetail getCourseDetail})
       : _getChapters = getChapters,
+        _getCourseDetail = getCourseDetail,
         super(const CourseState());
 
   final GetChapters _getChapters;
+  final GetCourseDetail _getCourseDetail;
 
-  void init({required int courseId}) async {
-    _setToLoadingState();
-    await setCourseId(courseId: courseId);
+  void init() async {
+    _setToLoadingState(true);
+    await getCourse();
     await getChapters();
-    selectChapter();
+
+    _setToLoadingState(false);
   }
 
-  void _setToLoadingState() {
-    emit(CourseLoadingState());
+  void _setToLoadingState(bool isLoading) {
+    emit(state.copyWith(isLoading: isLoading));
   }
 
   void _setToErrorState() {
     emit(CourseErrorState());
   }
 
-  Future<void> setCourseId({required int courseId}) async {
+  setCourseId({required int courseId}) {
     emit(state.copyWith(selectedCourseId: courseId));
   }
 
-  Future<void> getChapters() async {
+  Future<void> getCourse({int? courseId}) async {
     try {
-      final response = await _getChapters.call(state.selectedCourseId);
+      final response =
+          await _getCourseDetail.call(courseId ?? state.selectedCourseId);
+      final courseDisplayModel = CourseDisplayModel.toModel(response);
+
+      emit(state.copyWith(selectedCourse: courseDisplayModel));
+    } catch (error, stackTrace) {
+      _setToErrorState();
+      FirebaseCrashlytics.instance.recordError(
+        error,
+        stackTrace,
+        reason: 'User is trying to getCourse',
+        // information: ['this is just a test', 'version 1.0'],
+        fatal: true,
+        printDetails: true,
+      );
+      emit(CourseErrorState());
+    }
+  }
+
+  Future<void> getChapters({int? courseId}) async {
+    try {
+      final response =
+          await _getChapters.call(courseId ?? state.selectedCourseId);
       final chapterDisplayModel = response
           .map((chapter) => ChapterDisplayModel.fromEntity(chapter))
           .toList();
@@ -49,9 +78,11 @@ class CourseCubit extends Cubit<CourseState> {
         fatal: true,
         printDetails: true,
       );
+      emit(CourseErrorState());
     }
   }
 
+  // TODO: Will be used in the future
   Future<ChapterDisplayModel> selectChapter() async {
     try {
       final selectedChapter = state.chapterList
@@ -70,6 +101,7 @@ class CourseCubit extends Cubit<CourseState> {
         fatal: true,
         printDetails: true,
       );
+      emit(CourseErrorState());
       throw Error();
     }
   }

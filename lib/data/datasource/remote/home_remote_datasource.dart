@@ -11,7 +11,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   @override
   Future<List<CourseModel>> getCourses() async {
     try {
-      final response = await sl<SupabaseClient>().from('course').select();
+      final response = await sl<SupabaseClient>().rpc('get_courses').select();
       final courseList =
           response.map((course) => CourseModel.fromMap(course)).toList();
       return courseList;

@@ -1,17 +1,17 @@
 import 'package:di_mana_aja/core/usecase/base_usecase.dart';
-import 'package:di_mana_aja/domain/usecase/get_course.dart';
+import 'package:di_mana_aja/domain/usecase/get_course_list.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../model/course_display_model.dart';
+import '../../../model/course_display_model.dart';
 import 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit({required GetCourses getCourse})
+  HomeCubit({required GetCourseList getCourse})
       : _getCourse = getCourse,
         super(const HomeState());
 
-  final GetCourses _getCourse;
+  final GetCourseList _getCourse;
 
   Future<void> getCourse() async {
     try {

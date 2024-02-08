@@ -2,7 +2,7 @@
 
 import 'package:equatable/equatable.dart';
 
-import '../model/course_display_model.dart';
+import '../../../model/course_display_model.dart';
 
 class HomeState extends Equatable {
   final List<CourseDisplayModel> courses;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-import '../../../../config/color_palette.dart';
-import '../model/course_display_model.dart';
+import '../../config/color_palette.dart';
+import '../model/chapter_display_model.dart';
 
 class ChapterTiles extends StatelessWidget {
   const ChapterTiles({
