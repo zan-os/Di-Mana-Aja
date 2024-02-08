@@ -1,4 +1,4 @@
-import '../../../registered_injection.dart';
+import '../../../di/registered_injection.dart';
 import '../../model/chapter_model.dart';
 import 'sign_in_remote_datasource.dart';
 

@@ -3,7 +3,7 @@ import '../data/repository/sign_in_repository_impl.dart';
 import '../domain/repository/sign_in_repository.dart';
 import '../domain/usecase/register_user.dart';
 import '../domain/usecase/sign_in_with_google.dart';
-import '../registered_injection.dart';
+import 'registered_injection.dart';
 
 class SignInInjection {
   SignInInjection() {

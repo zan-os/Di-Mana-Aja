@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
-import '../../../../../registered_injection.dart';
+import '../../../di/registered_injection.dart';
 import '../../model/user_model.dart';
 
 typedef SupabaseClient = supabase.SupabaseClient;

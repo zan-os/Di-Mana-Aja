@@ -1,10 +1,10 @@
 import 'package:get_it/get_it.dart';
 
-import 'core/di/core_injection.dart';
-import 'di/course_injection.dart';
-import 'di/home_injection.dart';
-import 'di/sign_in_injection.dart';
-import 'di/splash_injection.dart';
+import '../core/di/core_injection.dart';
+import 'course_injection.dart';
+import 'home_injection.dart';
+import 'sign_in_injection.dart';
+import 'splash_injection.dart';
 
 final sl = GetIt.instance;
 
