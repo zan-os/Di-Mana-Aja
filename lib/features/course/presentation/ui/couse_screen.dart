@@ -1,11 +1,15 @@
-import 'package:di_mana_aja/config/color_palette.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:di_mana_aja/config/constant_config.dart';
 import 'package:di_mana_aja/features/course/presentation/bloc/course_cubit.dart';
 import 'package:di_mana_aja/features/course/presentation/bloc/course_state.dart';
-import 'package:di_mana_aja/features/course/presentation/model/course_display_model.dart';
+import 'package:di_mana_aja/registered_injection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+
+import '../widgets/chapter_tile_widget.dart';
 
 class CourseScreen extends StatelessWidget {
   const CourseScreen({super.key});
@@ -27,7 +31,19 @@ class CourseScreen extends StatelessWidget {
   Padding _buildBody() {
     return Padding(
       padding: const EdgeInsets.all(20.0),
-      child: _buildChapters(),
+      child: Column(
+        children: [
+          BlocBuilder<CourseCubit, CourseState>(
+            builder: (context, state) {
+              return CachedNetworkImage(
+                  imageUrl:
+                      '${sl<ConstantConfig>().basePathCourseImage}/${state.selectedChapter}');
+            },
+          ),
+          const Gap(16),
+          _buildChapters(),
+        ],
+      ),
     );
   }
 
@@ -44,83 +60,11 @@ class CourseScreen extends StatelessWidget {
           separatorBuilder: (context, index) => const Gap(12),
           itemBuilder: (context, index) {
             final chapter = listChapter[index];
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                RichText(
-                  text: TextSpan(
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                    children: [
-                      TextSpan(text: 'Section ${index + 1} '),
-                      TextSpan(
-                        text: chapter.title,
-                      ),
-                    ],
-                  ),
-                ),
-                const Gap(10),
-                _buildKeyFocus(chapter)
-              ],
+            return ChapterTiles(
+              chapter: chapter,
+              chapterOrder: index + 1,
             );
           },
-        );
-      },
-    );
-  }
-
-  ListView _buildKeyFocus(ChapterDisplayModel chapter) {
-    return ListView.separated(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: chapter.contentFocusKey.length,
-      padding: const EdgeInsets.only(left: 10),
-      separatorBuilder: (context, index) => const Gap(16),
-      itemBuilder: (context, index) {
-        final focusKey = chapter.contentFocusKey[index].focusKey;
-        return Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(30),
-            color: ColorPalette.darkBlueAccent,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Flexible(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    CircleAvatar(
-                      radius: 14,
-                      backgroundColor: Colors.grey.shade700,
-                      child: Text(
-                        '${index + 1}',
-                        style: const TextStyle(fontWeight: FontWeight.w700),
-                      ),
-                    ),
-                    const Gap(10),
-                    Flexible(
-                      child: Text(
-                        focusKey,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                        maxLines: 2,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const Gap(10),
-              const Icon(
-                Icons.check_circle_outline_rounded,
-                color: ColorPalette.green,
-              )
-            ],
-          ),
         );
       },
     );
