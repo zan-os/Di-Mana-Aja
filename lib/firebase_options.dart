@@ -63,6 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '998538335462',
     projectId: 'di-mana-aja-e3c38',
     storageBucket: 'di-mana-aja-e3c38.appspot.com',
+    androidClientId: '998538335462-4h8nd1lh408qq6e9kpmthccdg5stqk90.apps.googleusercontent.com',
     iosClientId: '998538335462-mhlleeoulsuk4nv1417sshc5kqb9el2e.apps.googleusercontent.com',
     iosBundleId: 'com.example.diManaAja',
   );

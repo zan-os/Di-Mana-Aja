@@ -4,7 +4,8 @@ class ConstantConfig {
   ConstantConfig._private() {
     baseUrl = dotenv.get('BASE_URL');
     apiKey = dotenv.get('API_KEY');
-    gidClientId = dotenv.get('GID_CLIENT_ID');
+
+    basePathCourseImage = dotenv.get('BASE_PATH_COURSE_IMAGE');
   }
 
   static final ConstantConfig _instance = ConstantConfig._private();
@@ -13,5 +14,6 @@ class ConstantConfig {
 
   String baseUrl = '';
   String apiKey = '';
-  String gidClientId = '';
+
+  String basePathCourseImage = '';
 }

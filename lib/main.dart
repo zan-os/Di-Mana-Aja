@@ -73,10 +73,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Load .env file
-  await dotenv.load(fileName: '.env');
+  dotenv.load(fileName: '.env');
 
   // Registering Service Locaton
-  await RegisteredInjection.init();
+  RegisteredInjection.init();
 
   // Initializing Firebase
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
